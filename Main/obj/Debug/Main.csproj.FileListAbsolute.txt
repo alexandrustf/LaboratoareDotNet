@@ -1,0 +1,6 @@
+C:\Users\Alex Stefan\source\repos\Lab1\Main\bin\Debug\Main.exe.config
+C:\Users\Alex Stefan\source\repos\Lab1\Main\bin\Debug\Main.exe
+C:\Users\Alex Stefan\source\repos\Lab1\Main\bin\Debug\Main.pdb
+C:\Users\Alex Stefan\source\repos\Lab1\Main\obj\Debug\Main.exe
+C:\Users\Alex Stefan\source\repos\Lab1\Main\obj\Debug\Main.pdb
+C:\Users\Alex Stefan\source\repos\Lab1\Main\obj\Debug\Main.csprojAssemblyReference.cache
