@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ModelMyPhotos.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelMyPhotosStoreContainer">
+    <EntitySet Name="Photos" EntityType="ModelMyPhotos.Store.Photos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="People" EntityType="ModelMyPhotos.Store.People" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Properties" EntityType="ModelMyPhotos.Store.Properties" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PhotoPerson" EntityType="ModelMyPhotos.Store.PhotoPerson" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PhotoProperty" EntityType="ModelMyPhotos.Store.PhotoProperty" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_PhotoPerson_Photo" Association="ModelMyPhotos.Store.FK_PhotoPerson_Photo">
+      <End Role="Photo" EntitySet="Photos" />
+      <End Role="PhotoPerson" EntitySet="PhotoPerson" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhotoPerson_Person" Association="ModelMyPhotos.Store.FK_PhotoPerson_Person">
+      <End Role="Person" EntitySet="People" />
+      <End Role="PhotoPerson" EntitySet="PhotoPerson" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhotoProperty_Photo" Association="ModelMyPhotos.Store.FK_PhotoProperty_Photo">
+      <End Role="Photo" EntitySet="Photos" />
+      <End Role="PhotoProperty" EntitySet="PhotoProperty" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhotoProperty_Property" Association="ModelMyPhotos.Store.FK_PhotoProperty_Property">
+      <End Role="Property" EntitySet="Properties" />
+      <End Role="PhotoProperty" EntitySet="PhotoProperty" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Photos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Path" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Place" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="true" />
+    <Property Name="Event" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Deleted" Type="bit" Nullable="true" />
+    <Property Name="Video" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="People">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Properties">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PhotoPerson">
+    <Key>
+      <PropertyRef Name="PhotoPerson_Person_Id" />
+      <PropertyRef Name="People_Id" />
+    </Key>
+    <Property Name="PhotoPerson_Person_Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="People_Id" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PhotoProperty">
+    <Key>
+      <PropertyRef Name="PhotoProperty_Property_Id" />
+      <PropertyRef Name="Properties_Id" />
+    </Key>
+    <Property Name="PhotoProperty_Property_Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Properties_Id" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_PhotoPerson_Photo">
+    <End Role="Photo" Type="ModelMyPhotos.Store.Photos" Multiplicity="1" />
+    <End Role="PhotoPerson" Type="ModelMyPhotos.Store.PhotoPerson" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PhotoPerson">
+        <PropertyRef Name="PhotoPerson_Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhotoPerson_Person">
+    <End Role="PhotoPerson" Type="ModelMyPhotos.Store.PhotoPerson" Multiplicity="*" />
+    <End Role="Person" Type="ModelMyPhotos.Store.People" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PhotoPerson">
+        <PropertyRef Name="People_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhotoProperty_Photo">
+    <End Role="Photo" Type="ModelMyPhotos.Store.Photos" Multiplicity="1" />
+    <End Role="PhotoProperty" Type="ModelMyPhotos.Store.PhotoProperty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PhotoProperty">
+        <PropertyRef Name="PhotoProperty_Property_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhotoProperty_Property">
+    <End Role="PhotoProperty" Type="ModelMyPhotos.Store.PhotoProperty" Multiplicity="*" />
+    <End Role="Property" Type="ModelMyPhotos.Store.Properties" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Property">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PhotoProperty">
+        <PropertyRef Name="Properties_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModelMyPhotos" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ModelMyPhotosContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Photos" EntityType="ModelMyPhotos.Photo" />
+          <EntitySet Name="People" EntityType="ModelMyPhotos.Person" />
+          <AssociationSet Name="PhotoPerson" Association="ModelMyPhotos.PhotoPerson">
+            <End Role="Photo" EntitySet="Photos" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <EntitySet Name="Properties" EntityType="ModelMyPhotos.Property" />
+          <AssociationSet Name="PhotoProperty" Association="ModelMyPhotos.PhotoProperty">
+            <End Role="Photo" EntitySet="Photos" />
+            <End Role="Property" EntitySet="Properties" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Photo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Path" Type="String" Nullable="true" />
+          <Property Name="Name" Type="String" Nullable="true" />
+          <Property Name="Place" Type="String" Nullable="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="true" />
+          <Property Name="Event" Type="String" Nullable="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="true" />
+          <Property Name="Video" Type="Boolean" Nullable="true" />
+          <NavigationProperty Name="People" Relationship="ModelMyPhotos.PhotoPerson" FromRole="Photo" ToRole="Person" />
+          <NavigationProperty Name="Properties" Relationship="ModelMyPhotos.PhotoProperty" FromRole="Photo" ToRole="Property" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Name" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="PhotoPerson">
+          <End Type="ModelMyPhotos.Photo" Role="Photo" Multiplicity="*" />
+          <End Type="ModelMyPhotos.Person" Role="Person" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="PhotoProperty">
+          <End Type="ModelMyPhotos.Photo" Role="Photo" Multiplicity="*" />
+          <End Type="ModelMyPhotos.Property" Role="Property" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelMyPhotosStoreContainer" CdmEntityContainer="ModelMyPhotosContainer">
+    <EntitySetMapping Name="Photos">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelMyPhotos.Photo)">
+        <MappingFragment StoreEntitySet="Photos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="Event" ColumnName="Event" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Video" ColumnName="Video" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelMyPhotos.Person)">
+        <MappingFragment StoreEntitySet="People">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Properties">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelMyPhotos.Property)">
+        <MappingFragment StoreEntitySet="Properties">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="PhotoPerson" TypeName="ModelMyPhotos.PhotoPerson" StoreEntitySet="PhotoPerson">
+      <EndProperty Name="Photo">
+        <ScalarProperty Name="Id" ColumnName="PhotoPerson_Person_Id" />
+      </EndProperty>
+      <EndProperty Name="Person">
+        <ScalarProperty Name="Id" ColumnName="People_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PhotoProperty" TypeName="ModelMyPhotos.PhotoProperty" StoreEntitySet="PhotoProperty">
+      <EndProperty Name="Photo">
+        <ScalarProperty Name="Id" ColumnName="PhotoProperty_Property_Id" />
+      </EndProperty>
+      <EndProperty Name="Property">
+        <ScalarProperty Name="Id" ColumnName="Properties_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
