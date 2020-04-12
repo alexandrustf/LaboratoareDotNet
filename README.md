@@ -19,3 +19,7 @@ Laborator 6 => Fisierul Laborator6
 Laborator 7 => https://github.com/alexandrustf/Proiect2
 
 Laborator 8 => Directorul Laborator 8
+
+PROIECTUL 2 poate fi gasit in repo-ul: https://github.com/alexandrustf/Proiect2DotNet
+
+
