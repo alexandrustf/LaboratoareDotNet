@@ -17,3 +17,5 @@ Laborator 5 => Fisierele EFStudiiCaz si TestDatabase pt testare,
 Laborator 6 => Fisierul Laborator6
 
 Laborator 7 => https://github.com/alexandrustf/Proiect2
+
+Laborator 8 => Directorul Laborator 8
