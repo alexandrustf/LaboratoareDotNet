@@ -22,4 +22,10 @@ Laborator 8 => Directorul Laborator 8
 
 PROIECTUL 2 poate fi gasit in repo-ul: https://github.com/alexandrustf/Proiect2StefanAlexandru-Ioan si intreaga solutie la https://github.com/alexandrustf/Proiect2DotNet
 
+Laborator 10 => gRPC cu EF adaugat la grpc_EF
+
+Laborator 11 => Pagini Razor adaugat la Asp_Stefan_Alexandru-Ioan_Rp
+
+Laborator 12 => adaugat la RazorLaborator12
+
 
