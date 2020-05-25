@@ -28,4 +28,6 @@ Laborator 11 => Pagini Razor adaugat la Asp_Stefan_Alexandru-Ioan_Rp
 
 Laborator 12 => adaugat la RazorLaborator12
 
+Proiect 3 poate fi gasit la link-ul: https://github.com/alexandrustf/Proiect2DotNet (este o continuare la proiectul 2) 
+
 
